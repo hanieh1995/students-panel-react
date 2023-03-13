@@ -4,6 +4,10 @@ import Button from "./components/UI/button/button";
 import NewStudent from "./components/students/newStudent/newStudent";
 import Toolbar from "./Container/Header/Toolbar/Toolbar";
 import "./App.css";
+import { BrowserRouter, Route ,Switch} from "react-router-dom";
+import HomePage from "./pages/Homepage";
+import AddStudent from "./pages/AddStudent";
+import EditStudent from "./pages/EditStudent";
 
 function App() {
   const inputEl = useRef(null);
@@ -47,7 +51,7 @@ function App() {
 
   useEffect(() => {
     setArrayHolder(studentsState);
-    inputEl.current.focus();
+    // inputEl.current.focus();
   }, [studentClass]);
 
   const nameChangeHandler = (event, id) => {
@@ -148,14 +152,15 @@ function App() {
     serStudentPhoneNumber('');
   }
 
-  const executeScroll = ()=>{
-    window.scrollTo(0,inputEl.current.offsetTop);
+  const executeScroll = () => {
+    window.scrollTo(0, inputEl.current.offsetTop);
   }
 
   return (
-    <div className="App">
-      <Toolbar/>
-      <NewStudent
+    <BrowserRouter>
+      <div className="App">
+        <Toolbar />
+        {/* <NewStudent
         studentName={studentName}
         studentClass={studentClass}
         studentEmail={studentEmail}
@@ -165,29 +170,18 @@ function App() {
         studentEmailHandler={studentEmailHandler}
         studentPhoneNumberHandler={studentPhoneNumberHandler}
         addStudent={addStudent}
-      />
-      <input
-        type="text"
-        value={searchBarValue}
-        onChange={searchFilterFunction}
-        ref={inputEl}
-      />
-      <Button btnType="success" clicked={toggleHandler}>
-        تغیر وضعیت نمایش
-      </Button>
-      <Students
-        studentsList={studentsState}
-        nameChanged={nameChangeHandler}
-        classChanged={classChangeHandler}
-        phoneNumberChanged={phoneNumberChangeHandler}
-        emailChanged={emailChangeHandler}
-        deleted={deleteStudent}
-        toggle={toggle}
-      />
-      <Button btnType="danger" clicked={executeScroll}>
+      /> */}
+        {/* <Button btnType="danger" clicked={executeScroll}>
         click to scroll
-      </Button>
-    </div>
+      </Button> */}
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/add-student" exact component={AddStudent} />
+          <Route path="/student/:id" exact component={EditStudent} />
+        </Switch>
+
+      </div>
+    </BrowserRouter >
   );
 }
 

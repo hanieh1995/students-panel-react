@@ -2,8 +2,8 @@ import React from "react";
 import classes from "./newStudent.module.css";
 import Button from "../../UI/button/button";
 import PropTypes from 'prop-types';
-import Wrapper from '../../hoc/Wrapper';
 import WithClss from "../../hoc/WithClass";
+import { withRouter } from "react-router";
 
 const NewStudent = (props) => {
   const { studentName, studentClass, studentPhoneNumber, studentEmail } = props;
@@ -15,7 +15,7 @@ const NewStudent = (props) => {
     addStudent
   } = props;
   return (
-    <Wrapper>
+    <>
       <h1>اضافه کردن دانش اموز</h1>
       <label>نام و نام خانوادگی</label>
       <input type="text" value={studentName} onChange={studentNameHandler} />
@@ -29,10 +29,10 @@ const NewStudent = (props) => {
       <Button clicked={addStudent} btnType="success">
         اضافه کردن
       </Button>
-    </Wrapper>
+    </>
   );
 };
-export default React.memo(WithClss(NewStudent, classes.newStudent));
+export default React.memo(withRouter(WithClss(NewStudent, classes.newStudent)));
 NewStudent.prototype = {
   studentName: PropTypes.string.isRequired,
   studentClass: PropTypes.number.isRequired,

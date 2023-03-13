@@ -4,11 +4,16 @@ import MenuItem from "./Menuitem/Menuitem";
 const MenuItems = () => {
     return (
         <ul className="MenuItems">
-            <MenuItem link="/" active>
+            <MenuItem link="/" >
                 صفحه اصلی
             </MenuItem>
-            <MenuItem link="/"  >
-                مشاهده دانش آموزان
+            <MenuItem link={{
+                pathname: "/add-student",
+                search:"?sort-name",
+                hash:"#the-hash",
+                state:{fromDashboard:true}
+                }}  >
+                اضافه کردن دانش آموزان
             </MenuItem>
 
         </ul>
